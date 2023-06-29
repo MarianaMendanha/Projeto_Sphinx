@@ -66,8 +66,9 @@ docs
 make.bat
 Makefile
 ```
-After that, we need to configure our sphinx in **conf.py**, there we can set a lot of things including themes for our documentation:
+After that, we need to configure our sphinx in **conf.py**, there, we can set a lot of things including themes for our documentation:
 - [Site with some disponible themes](https://sphinx-themes.org/)
+  
 Here is an example of the parameters we can\need to change:
 ```py
 # So sphinx can look outside its scope (look through the project)
@@ -80,7 +81,7 @@ extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "s
 templates_path = ['_templates']
 html_theme = 'renku'
 ```
-You can make your own .rst files and document your code too, to do so you need to, you need to use:
+You can make your own **.rst** files and document your code too, to do so you need to use:
 ```bash
 # We are now located at the \docs folder 
 cd ..
