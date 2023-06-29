@@ -1,85 +1,125 @@
+# Get Started Tutorial for Sphinx Documentation
 
-# Python Project Template
+## STEPS:
 
-A low dependency and really simple to start project template for Python Projects.
-
-See also 
-- [Flask-Project-Template](https://github.com/rochacbruno/flask-project-template/) for a full feature Flask project including database, API, admin interface, etc.
-- [FastAPI-Project-Template](https://github.com/rochacbruno/fastapi-project-template/) The base to start an openapi project featuring: SQLModel, Typer, FastAPI, JWT Token Auth, Interactive Shell, Management Commands.
-
-### HOW TO USE THIS TEMPLATE
-
-> **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/python-project-template/generate)** feature.
-
-1. Click on **[Use this template](https://github.com/rochacbruno/python-project-template/generate)**
-3. Give a name to your project  
-   (e.g. `my_awesome_project` recommendation is to use all lowercase and underscores separation for repo names.)
-3. Wait until the first run of CI finishes  
-   (Github Actions will process the template and commit to your new repo)
-4. If you want [codecov](https://about.codecov.io/sign-up/) Reports and Automatic Release to [PyPI](https://pypi.org)  
-  On the new repository `settings->secrets` add your `PYPI_API_TOKEN` and `CODECOV_TOKEN` (get the tokens on respective websites)
-4. Read the file [CONTRIBUTING.md](CONTRIBUTING.md)
-5. Then clone your new project and happy coding!
-
-> **NOTE**: **WAIT** until first CI run on github actions before cloning your new project.
-
-### What is included on this template?
-
-- 🖼️ Templates for starting multiple application types:
-  * **Basic low dependency** Python program (default) [use this template](https://github.com/rochacbruno/python-project-template/generate)
-  * **Flask** with database, admin interface, restapi and authentication [use this template](https://github.com/rochacbruno/flask-project-template/generate).
-  **or Run `make init` after cloning to generate a new project based on a template.**
-- 📦 A basic [setup.py](setup.py) file to provide installation, packaging and distribution for your project.  
-  Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
-- 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.
-- 📃 Documentation structure using [mkdocs](http://www.mkdocs.org)
-- 💬 Auto generation of change log using **gitchangelog** to keep a HISTORY.md file automatically based on your commit history on every release.
-- 🐋 A simple [Containerfile](Containerfile) to build a container image for your project.  
-  `Containerfile` is a more open standard for building container images than Dockerfile, you can use buildah or docker with this file.
-- 🧪 Testing structure using [pytest](https://docs.pytest.org/en/latest/)
-- ✅ Code linting using [flake8](https://flake8.pycqa.org/en/latest/)
-- 📊 Code coverage reports using [codecov](https://about.codecov.io/sign-up/)
-- 🛳️ Automatic release to [PyPI](https://pypi.org) using [twine](https://twine.readthedocs.io/en/latest/) and github actions.
-- 🎯 Entry points to execute your program using `python -m <projeto_sphinx>` or `$ projeto_sphinx` with basic CLI argument parsing.
-- 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project on Linux, Mac and Windows environments.
-
-> Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
-> If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/python-project-template/issues) or fork and send a PULL REQUEST.
-
-[❤️ Sponsor this project](https://github.com/sponsors/rochacbruno/)
-
-<!--  DELETE THE LINES ABOVE THIS AND WRITE YOUR PROJECT README BELOW -->
-
----
-# projeto_sphinx
-
-[![codecov](https://codecov.io/gh/MarianaMendanha/Projeto_Sphinx/branch/main/graph/badge.svg?token=Projeto_Sphinx_token_here)](https://codecov.io/gh/MarianaMendanha/Projeto_Sphinx)
-[![CI](https://github.com/MarianaMendanha/Projeto_Sphinx/actions/workflows/main.yml/badge.svg)](https://github.com/MarianaMendanha/Projeto_Sphinx/actions/workflows/main.yml)
-
-Awesome projeto_sphinx created by MarianaMendanha
-
-## Install it from PyPI
-
-```bash
-pip install projeto_sphinx
+### 1. Clone the repository that you want to document
+Example:
+```git
+git clone https://github.com/MarianaMendanha/Projeto_Sphinx.git
 ```
 
-## Usage
-
+### 2. Set up a virtual environment for your project
+For Windows, install and create VENV:
+```bash
+pip install virtualenv
+```
 ```py
-from projeto_sphinx import BaseClass
-from projeto_sphinx import base_function
-
-BaseClass().base_method()
-base_function()
+py -m virtualenv sphinxenv
 ```
-
+With the VENV ready, activate it: 
 ```bash
-$ python -m projeto_sphinx
-#or
-$ projeto_sphinx
+cd .\sphinxenv\Scripts\
+.\activate
+```
+To deactivate:
+```bash
+cd .\sphinxenv\Scripts\
+.\deactivate
 ```
 
-## Development
+### 3. Set up the documentation
+Create a folder "docs" in the base of your project:
+```bash
+mkdir docs
+cd docs
+```
+Install and iniciate sphinx inside docs directory:
+```bash
+pip install sphinx
+sphinx-quickstart
+```
+There will be a build and source folder, a makefile, a conf.py file and a index.rst, something like this:
+```
+docs
+├───build
+│   ├───doctrees
+│   └───html
+│       ├───_images
+│       ├───_modules
+│       │   └───src
+│       │       ├───module1
+│       │       ├───module2
+│       │       └───utils
+│       ├───_sources
+│       └───_static
+│           ├───css
+│           │   └───fonts
+│           ├───fonts
+│           │   └───calcutta
+│           └───js
+└───source
+    ├───images
+    ├───_static
+    └───_templates
+        conf.py
+        index.rst
+make.bat
+Makefile
+```
+After that, we need to configure our sphinx in **conf.py**, there we can set a lot of things including themes for our documentation:
+- [Site with some disponible themes](https://sphinx-themes.org/)
+Here is an example of the parameters we can\need to change:
+```
+# So sphinx can look outside its scope (look through the project)
+# In this case is '..\..' because our .rst files are inside docs\source directory
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..\..'))
 
-Read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+templates_path = ['_templates']
+html_theme = 'renku'
+```
+You can make your own .rst files and document your code too, to do so you need to, you need to use:
+```
+# We are now located at the \docs folder 
+cd ..
+# We are now located at the root of the project 
+sphinx-apidoc -o docs\source .
+```
+where **"docs\source"** is the place we are going to create our .rst files and "." means that we are looking for all the files of our project that has docstrings in it, for this to work, every directory (module) has to have a **"__init__.py"** file, so sphinx can indentify the folder as a python module/package. We can use this command in specific directories too, as shown in:
+```
+sphinx-apidoc -o docs\source PLATAFORMA\Relatorio_py\modulos
+```
+After our .rst files are ready and configured (don't forget to chage the paths and doctrees inside them, check **".rst"** files above for examples to be followed), we can create our html with the command:
+```
+cd docs
+.\make html
+```
+Open the **index.html** file gerated in **\docs\build\html**, and that`s it.
+
+> **NOTE**: **WAIT** If that is some kind of ERROR on generating the html regarding sphinx not finding imported files try seeing in which directory sphinx is working at the moment of the ERROR. Example:
+```py
+sys.path.insert(0, os.path.abspath('..\PLATAFORMA\Relatorio_py'))
+dir = sys.path[0]
+
+cwd = os.getcwd()
+print("CurrentWorkingDirectory>>>", cwd)
+
+# change directory
+os.chdir(os.path.join(dir, "modulos"))
+```
+
+#### References used for this tutorial:
+- [How to Document using Sphinx: Part 1—Setting up](https://www.youtube.com/watch?v=WcUhGT4rs5o)
+- [How to Document using Sphinx: Part 2—Building and Changing Themes](https://www.youtube.com/watch?v=RvJ54ADcVno)
+- [How to Document using Sphinx: Part 3—Formatting with reStructuredText](https://www.youtube.com/watch?v=DSIuLnoKLd8&t=419s)
+- [How to Document using Sphinx: Part 4—Using Git to push docs to GitHub](https://www.youtube.com/watch?v=CqR1b0Y-o5k)
+- [Sphinx - How to generate documentation from python doc strings - Five + Minutes on Tips and Tricks](https://www.youtube.com/watch?v=BWIrhgCAae0)
+- [Sphinx Documentation Tool | HTML UI | How to Document Large Python Codebases and Classes |](https://www.youtube.com/watch?v=5s3JvVqwESA)
+
+
+🖼️ 📦 ❤️ 🤖 📃 💬 🐋 🧪 ✅ 📊 🛳️ 🎯 🔄 🖼️ 📦 ❤️ 🤖 📃 💬 🐋 🧪 ✅ 📊 🛳️ 🎯 🔄 🖼️ 📦 ❤️ 🤖 📃 💬 🐋 🧪 ✅ 📊 🛳️ 🎯 🔄
+
+
+
