@@ -69,7 +69,7 @@ Makefile
 After that, we need to configure our sphinx in **conf.py**, there we can set a lot of things including themes for our documentation:
 - [Site with some disponible themes](https://sphinx-themes.org/)
 Here is an example of the parameters we can\need to change:
-```
+```py
 # So sphinx can look outside its scope (look through the project)
 # In this case is '..\..' because our .rst files are inside docs\source directory
 import os
@@ -81,18 +81,18 @@ templates_path = ['_templates']
 html_theme = 'renku'
 ```
 You can make your own .rst files and document your code too, to do so you need to, you need to use:
-```
+```bash
 # We are now located at the \docs folder 
 cd ..
 # We are now located at the root of the project 
 sphinx-apidoc -o docs\source .
 ```
 where **"docs\source"** is the place we are going to create our .rst files and "." means that we are looking for all the files of our project that has docstrings in it, for this to work, every directory (module) has to have a **"__init__.py"** file, so sphinx can indentify the folder as a python module/package. We can use this command in specific directories too, as shown in:
-```
+```bash
 sphinx-apidoc -o docs\source PLATAFORMA\Relatorio_py\modulos
 ```
 After our .rst files are ready and configured (don't forget to chage the paths and doctrees inside them, check **".rst"** files above for examples to be followed), we can create our html with the command:
-```
+```bash
 cd docs
 .\make html
 ```
