@@ -99,7 +99,7 @@ cd docs
 ```
 Open the **index.html** file gerated in **\docs\build\html**, and that`s it.
 
-> **NOTE**: **WAIT** If that is some kind of ERROR on generating the html regarding sphinx not finding imported files try seeing in which directory sphinx is working at the moment of the ERROR. Example:
+> **NOTE**: If that is some kind of **ERROR** on generating the html regarding sphinx not finding imported files try seeing in which directory sphinx is working at the moment of the **ERROR**. Example:
 ```py
 sys.path.insert(0, os.path.abspath('..\PLATAFORMA\Relatorio_py'))
 dir = sys.path[0]
