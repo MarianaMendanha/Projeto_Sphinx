@@ -116,6 +116,7 @@ os.chdir(os.path.join(dir, "modulos"))
 - [How to Document using Sphinx: Part 2—Building and Changing Themes](https://www.youtube.com/watch?v=RvJ54ADcVno)
 - [How to Document using Sphinx: Part 3—Formatting with reStructuredText](https://www.youtube.com/watch?v=DSIuLnoKLd8&t=419s)
 - [How to Document using Sphinx: Part 4—Using Git to push docs to GitHub](https://www.youtube.com/watch?v=CqR1b0Y-o5k)
+- [Documenting with Sphinx Tutorial: Intro & Overview](https://techwritingmatters.com/documenting-with-sphinx-tutorial-intro-overview)
 - [Sphinx - How to generate documentation from python doc strings - Five + Minutes on Tips and Tricks](https://www.youtube.com/watch?v=BWIrhgCAae0)
 - [Sphinx Documentation Tool | HTML UI | How to Document Large Python Codebases and Classes |](https://www.youtube.com/watch?v=5s3JvVqwESA)
 
